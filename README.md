@@ -1,5 +1,5 @@
-<span style="font-size: 24px"><span style="font-weight: bold">Artifact</span> - Firefox browser extension for organizing and managing tabs.</span>
+## Artifact - Firefox browser extension for organizing and managing tabs.
 
-<span style="font-size: 24px">Build using Typescript, React, Redux & Webpack</span>
+### Build using Typescript, React, Redux & Webpack
 
-<span style="font-size: 18px">#inspired by Sidebery</span>
+### #inspired by Sidebery
