@@ -5,17 +5,24 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard-with-typescript'
+    'standard-with-typescript',
+    'plugin:react/jsx-runtime'
   ],
   overrides: [
   ],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
+    project: 'tsconfig.json'
   },
   plugins: [
     'react'
   ],
-  rules: {
+  rules: {},
+  ignorePatterns: ['build', 'node_modules'],
+  settings: {
+    react: {
+      version: 'detect'
+    }
   }
 }

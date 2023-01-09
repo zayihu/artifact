@@ -2,17 +2,18 @@
   "manifest_version": 2,
   "author": "zayihu",
   "name": "Artifact",
+  "version": "0.1",
   "icons": {
     "32": "logo.svg"
   },
   "sidebar_action": {
     "default_icon": "",
     "default_title": "Artifact",
-    "default_panel": "sidebar.html"
+    "default_panel": "views/sidebar.html"
   },
   "options_ui": {
     "open_in_tab": true,
-    "page": "settings.html"
+    "page": "views/settings.html"
   },
   "background": {
     "scripts": ["background.js"]

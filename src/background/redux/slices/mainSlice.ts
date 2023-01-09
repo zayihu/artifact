@@ -1,32 +1,44 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {panel, panelSettings, tab} from "../../types";
+import {changePayload, createPayload, deletePayload, Items} from "../../types";
 
-export interface panelsState {
-  panels: panel[]
+export interface mainState {
+  items: Items
 }
 
-const initialState: panelsState = {
-  panels: []
+const initialState: mainState = {
+  items: {
+    panels: [],
+    tabs: [],
+    settings: {}
+  }
 }
 
-export const panelsSlice = createSlice({
-  name: 'panels',
+export const mainSlice = createSlice({
+  name: '',
   initialState,
   reducers: {
-    createPanel: (state, panel: PayloadAction<panel>) => {
-      state.panels = [...state.panels, panel.payload]
+    createItem: (state, data: PayloadAction<createPayload>) => {
+      let items = state.items[data.payload.type]
+      items = [...items, data.payload.data]
     },
-    changePanelSettings: (state, data: PayloadAction<panelSettings>) => {
-      let index = state.panels.findIndex(obj => obj.id === data.payload.panelId)
-      state.panels[index] = {...state.panels[index], ...data.payload.settings}
+    changeItems: (state, data: PayloadAction<changePayload>) => {
+      if (data.payload.type === 'settings') {
+        state.items.settings = {...state.items.settings, ...data.payload.data}
+        return
+      }
+      let items = state.items[data.payload.type]
+      let index = items.findIndex(obj => obj.id === data.payload.data.id)
+      items[index] = {...items[index], ...data.payload.data}
     },
-    deletePanel: (state, id: PayloadAction<number>) => {
-      let index = state.panels.findIndex(obj => obj.id === id.payload)
-      state.panels = [...state.panels.slice(index)]
+    deleteItem: (state, data: PayloadAction<deletePayload>) => {
+      let items = state.items[data.payload.type]
+      let index = items.findIndex(obj => obj.id === data.payload.id)
+      items = [...items.slice(index)]
     }
+
   }
 })
 
-export const { createPanel, changePanelSettings, deletePanel } = panelsSlice.actions
+export const { createItem, changeItems, deleteItem } = mainSlice.actions
 
-export default panelsSlice.reducer
+export default mainSlice.reducer
